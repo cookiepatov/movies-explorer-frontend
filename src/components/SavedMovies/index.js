@@ -1,1 +1,0 @@
-export { SavedMovies } from './SavedMovies';
