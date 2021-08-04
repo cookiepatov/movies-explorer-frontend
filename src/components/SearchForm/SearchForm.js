@@ -3,6 +3,9 @@ import './SearchForm.css';
 
 export const SearchForm = () => {
   console.log('SearchForm');
-  return (<>{'Hellow World'}</>
+  return (
+    <div>
+      {'Hello Form'}
+    </div>
   );
 };

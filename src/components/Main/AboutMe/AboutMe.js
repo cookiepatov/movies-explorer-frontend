@@ -3,6 +3,9 @@ import './AboutMe.css';
 
 export const AboutMe = () => {
   console.log('AboutMe');
-  return (<>{'Hellow World'}</>
+  return (
+    <section>
+      {'Hello Me'}
+    </section>
   );
 };

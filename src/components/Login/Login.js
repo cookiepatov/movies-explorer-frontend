@@ -1,8 +1,15 @@
 import React from 'react';
+
+import { AuthForm } from '../AuthForm';
+
 import './Login.css';
 
 export const Login = () => {
   console.log('Login');
-  return (<>{'Hellow World'}</>
+  return (
+    <main>
+      {'Hello Login'}
+      <AuthForm />
+    </main>
   );
 };

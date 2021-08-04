@@ -3,6 +3,9 @@ import './Profile.css';
 
 export const Profile = () => {
   console.log('Profile');
-  return (<>{'Hellow World'}</>
+  return (
+    <main>
+      {'Hello Profile'}
+    </main>
   );
 };

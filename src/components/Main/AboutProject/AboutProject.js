@@ -3,6 +3,9 @@ import './AboutProject.css';
 
 export const AboutProject = () => {
   console.log('AboutProject');
-  return (<>{'Hellow World'}</>
+  return (
+    <section>
+      {'Hello Project'}
+    </section>
   );
 };

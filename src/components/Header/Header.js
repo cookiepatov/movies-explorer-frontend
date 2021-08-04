@@ -1,8 +1,15 @@
 import React from 'react';
+
+import { Navigation } from '../Navigation';
+
 import './Header.css';
 
 export const Header = () => {
   console.log('Header');
-  return (<>{'Hellow World'}</>
+  return (
+    <header>
+      {'Hello Header'}
+      <Navigation />
+    </header>
   );
 };

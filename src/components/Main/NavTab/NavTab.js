@@ -3,6 +3,9 @@ import './NavTab.css';
 
 export const NavTab = () => {
   console.log('NavTab');
-  return (<>{'Hellow World'}</>
+  return (
+    <nav>
+      {'Hello Nav'}
+    </nav>
   );
 };

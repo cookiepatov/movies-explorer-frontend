@@ -3,6 +3,9 @@ import './Navigation.css';
 
 export const Navigation = () => {
   console.log('Navigation');
-  return (<>{'Hellow World'}</>
+  return (
+    <nav>
+      {'Hello Navigation'}
+    </nav>
   );
 };
