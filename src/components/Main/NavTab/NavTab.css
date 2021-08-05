@@ -1,6 +1,6 @@
-.navTab {
+.navTab {/* 
   position: sticky;
-  top: 74px;
+  top: 74px; */
   background-color: #272727;
   display: flex;
   flex-direction: row;
