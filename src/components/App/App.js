@@ -1,6 +1,6 @@
-import React from 'react';
+import { React, useState } from 'react';
 import {
-  Switch, Route,
+  Switch, Route, withRouter, Redirect,
 } from 'react-router-dom';
 
 import './App.css';
@@ -14,39 +14,37 @@ import { SavedMovies } from '../SavedMovies';
 import { Profile } from '../Profile';
 import { Login } from '../Login';
 import { Register } from '../Register';
-import { NotFound } from '../NotFound/NotFound';
+import { NotFound } from '../NotFound';
+import { Shading } from '../Shading';
 
-export const App = () => {
-  console.log('App');
+const App = () => {
+  const [isShaded, setIsShaded] = useState(false);
 
   return (
-    <div className={ 'App' }>
+    <div className={'page'}>
+        <Shading isShaded={isShaded}/>
+        <Header
+              isLoggedIn={true}
+              toggleShading={() => setIsShaded(!isShaded)}/>
         <Switch>
           <Route
             exact
             path={'/'}>
-            <Header />
-            <Main />
-            <Footer />
+              <Main />
           </Route>
           <Route
             exact
             path={'/movies'}>
-              <Header />
               <Movies />
-              <Footer />
           </Route>
           <Route
             exact
             path={'/saved-movies'}>
-              <Header />
               <SavedMovies />
-              <Footer />
           </Route>
           <Route
             exact
             path={'/profile'}>
-              <Header />
               <Profile />
           </Route>
           <Route
@@ -59,10 +57,18 @@ export const App = () => {
             path={'/signup'}>
               <Register />
           </Route>
-          <Route>
+          <Route
+            exact
+            path={'/404'}>
               <NotFound />
+            </Route>
+          <Route>
+            <Redirect to={'/404'}/>
           </Route>
         </Switch>
+        <Footer />
     </div>
   );
 };
+
+export default withRouter(App);

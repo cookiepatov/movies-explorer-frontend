@@ -1,1 +1,3 @@
-export { Navigation } from './NotFound';
+import NotFound from './NotFound';
+
+export { NotFound };

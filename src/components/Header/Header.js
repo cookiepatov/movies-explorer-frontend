@@ -1,15 +1,27 @@
 import React from 'react';
-
-import { Navigation } from '../Navigation';
+import { useHistory } from 'react-router-dom';
+import { LogoBtn } from '../LogoBtn/LogoBtn';
+import { Navigation } from './Navigation';
 
 import './Header.css';
 
-export const Header = () => {
-  console.log('Header');
+const hideHeader = () => {
+  const { pathname } = useHistory().location;
+
+  if (pathname === '/signup' || pathname === '/signin' || pathname === '/404') {
+    return true;
+  }
+  return false;
+};
+
+export const Header = (props) => {
+  const { isLoggedIn, toggleShading } = props;
   return (
-    <header>
-      {'Hello Header'}
-      <Navigation />
+    hideHeader() ? <></> : <header className={'header'}>
+      <LogoBtn />
+      <Navigation
+        toggleShading={toggleShading}
+        isLoggedIn={isLoggedIn}/>
     </header>
   );
 };

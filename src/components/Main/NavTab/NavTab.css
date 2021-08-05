@@ -1,0 +1,50 @@
+.navTab {
+  position: sticky;
+  top: 74px;
+  background-color: #272727;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.navTab__container {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-auto-flow: column;
+  gap: 40px;
+}
+
+
+.navTab__link {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  color: white;
+  text-decoration: none;
+  transition: opacity 0.2s ease-in;
+}
+
+.navTab__link::after {
+  content: '';
+  background-color: white;
+  margin-top: 1px;
+  height: 1px;
+  width: 100%;
+  display: block;
+}
+
+.navTab__link:hover {
+  opacity: 0.8;
+}
+
+
+
+@media  (max-width: 520px) {
+  .navTab__link {
+    font-size: 11px;
+  }
+}
