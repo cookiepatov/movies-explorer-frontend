@@ -10,7 +10,7 @@ export const LogoBtn = () => (
     <Link
       className={'logoBtn'}
       to={'/'} >
-      <img src={logo} alt={'Логотип'} />
+      <img src={logo} alt={'Логотип'} className={'logoBtn__logo'} />
     </Link>
   </div>
 );

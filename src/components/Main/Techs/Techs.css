@@ -34,7 +34,7 @@
 
 .techs__container {
   display: grid;
-  width: calc(100vw - 140px);
+  width: 100%;
   max-width: 690px;
   grid-template-columns: repeat(auto-fill, minmax(84px, 90px));
   list-style: none;
@@ -63,6 +63,10 @@
 @media screen and (max-width: 768px) {
   .techs {
     padding: 90px 50px 90px 50px;
+  }
+  .techs__item {
+    height: 57px;
+    width: 84px;
   }
 }
 

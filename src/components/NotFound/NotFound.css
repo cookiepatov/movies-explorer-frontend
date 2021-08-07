@@ -3,6 +3,7 @@
   flex-direction: column;
   margin-left: auto;
   margin-right: auto;
+  height: 100vh;
 }
 
 .notFound__heading {
@@ -12,6 +13,7 @@
   font-style: normal;
   font-weight: normal;
   margin-top: 246px;
+  margin-bottom: 0;
 }
 
 
@@ -22,10 +24,12 @@
   line-height: 19px;
   text-align: center;
   margin-top: 5px;
+  margin-bottom: 0;
 }
 
 .notFound__link {
-  margin-top: 184px;
+  margin-top: auto;
+  margin-bottom: 60px;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -47,6 +51,9 @@
   .notFound__heading {
     margin-top: 408px;
   }
+  .notFound__link {
+    margin-bottom: 222px;
+  }
 }
 
 
@@ -62,8 +69,9 @@
     line-height: 19px;
   }
   .notFound__link {
-    margin-top: 284px;
+    margin-top: auto;
     font-size: 12px;
     line-height: 15px;
+    margin-bottom: 30px;
   }
 }

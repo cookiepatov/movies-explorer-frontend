@@ -1,7 +1,9 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import {
-  Switch, Route, withRouter, Redirect,
+  Switch, Route, withRouter, Redirect, useHistory,
 } from 'react-router-dom';
+
+import CurrentUserContext from '../../contexts/CurrentUserContext';
 
 import './App.css';
 
@@ -19,12 +21,37 @@ import { Shading } from '../Shading';
 
 const App = () => {
   const [isShaded, setIsShaded] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  const history = useHistory();
+
+  useEffect(() => {
+    setCurrentUser({
+      name: 'Евгений',
+      email: 'ev@geniy.com',
+    });
+
+    setLoggedIn(true);
+  }, []);
+
+  const handleLogout = () => {
+    setCurrentUser({});
+    setLoggedIn(false);
+    history.push('/');
+  };
+
+  const handleChangeUser = (e, user) => {
+    e.preventDefault();
+    setCurrentUser(user);
+  };
 
   return (
-    <div className={'page'}>
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className={'page'}>
         <Shading isShaded={isShaded}/>
         <Header
-              isLoggedIn={true}
+              isLoggedIn={loggedIn}
               toggleShading={() => setIsShaded(!isShaded)}/>
         <Switch>
           <Route
@@ -45,7 +72,9 @@ const App = () => {
           <Route
             exact
             path={'/profile'}>
-              <Profile />
+              <Profile
+                handleChangeUser={handleChangeUser}
+                handleLogout={handleLogout} />
           </Route>
           <Route
             exact
@@ -68,6 +97,7 @@ const App = () => {
         </Switch>
         <Footer />
     </div>
+    </CurrentUserContext.Provider>
   );
 };
 

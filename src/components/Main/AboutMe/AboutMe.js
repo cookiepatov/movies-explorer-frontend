@@ -6,6 +6,15 @@ import photo from '../../../images/user-photo.jpg';
 
 import './AboutMe.css';
 
+const getSocialLinkItem = (href, title) => (
+  <li className={'links__item'}>
+    <a
+      className={'link'}
+      href={href}>
+      {title}
+    </a>
+  </li>);
+
 export const AboutMe = () => (
   <section id={'about_me'} className={'about-me'}>
     <SectionHeading
@@ -25,20 +34,10 @@ export const AboutMe = () => (
         или снимаю красивые штуки с квадрокоптера
       </p>
       <ul className={'info__links'}>
-        <li className={'links__item'}>
-          <a
-            className={'link'}
-            href={'https://github.com/cookiepatov/'}>
-            GitHub
-          </a>
-        </li>
-        <li className={'links__item'}>
-          <a
-            className={'link'}
-            href={'https://www.facebook.com/Cookiepatov/'}>
-            Facebook
-          </a>
-        </li>
+        {getSocialLinkItem('https://github.com/cookiepatov/', 'GitHub')}
+        {getSocialLinkItem('https://www.facebook.com/Cookiepatov/', 'Facebook')}
+        {getSocialLinkItem('https://www.linkedin.com/in/evgeny-reynat-612445210/', 'LinkedIn')}
+        {getSocialLinkItem('https://www.instagram.com/cookiepatov/', 'Instagram')}
       </ul>
       <img className={'photo'} alt={'Фотография'} src={photo} />
     </div>

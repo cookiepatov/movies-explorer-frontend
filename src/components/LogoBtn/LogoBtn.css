@@ -10,6 +10,14 @@
   transition: 0.2s ease-in;
 }
 
+.logoBtn__logo {
+  transition: transform 0.2s ease-in;
+}
+
 .logoBtn:hover {
   background-color: #57f59e;
+}
+
+.logoBtn:hover .logoBtn__logo {
+  transform: scale(1.1);
 }

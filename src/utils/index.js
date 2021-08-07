@@ -1,3 +1,4 @@
 import { classNames } from './classNames';
+import { useFormAndValidation } from './validator';
 
-export { classNames };
+export { classNames, useFormAndValidation };
