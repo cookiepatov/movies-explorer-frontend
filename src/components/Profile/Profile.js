@@ -10,13 +10,13 @@ export const Profile = ({ handleChangeUser, handleLogout }) => {
   const [inputsValidity, setValidity] = useState({ name: true, email: true });
   const [formValiduty, setFormValidity] = useState(false);
   const [inputValues, setInputValues] = useState({ name: '', email: '' });
-  const [errorMses, setErrorMsgs] = useState({ name: '', email: '' });
+  const [errorMsgs, setErrorMsgs] = useState({ name: '', email: '' });
   const handleChange = (e) => {
     const {
       name, validity, validationMessage, value,
     } = e.target;
     setValidity({ ...inputsValidity, [name]: validity.valid });
-    setErrorMsgs({ ...errorMses, [name]: validationMessage });
+    setErrorMsgs({ ...errorMsgs, [name]: validationMessage });
     setInputValues({ ...inputValues, [name]: value });
   };
 
@@ -54,7 +54,7 @@ export const Profile = ({ handleChangeUser, handleLogout }) => {
           title={'Имя'}
           validity={inputsValidity.name}
           placeholder={''}
-          errorText={errorMses.name}
+          errorText={errorMsgs.name}
         />
         <InputElement
           value={user.email}
@@ -66,7 +66,7 @@ export const Profile = ({ handleChangeUser, handleLogout }) => {
           title={'E-mail'}
           validity={inputsValidity.email}
           placeholder={''}
-          errorText={errorMses.email}
+          errorText={errorMsgs.email}
         />
         <button
           disabled={!formValiduty}
