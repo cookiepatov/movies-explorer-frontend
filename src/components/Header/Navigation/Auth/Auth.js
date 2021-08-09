@@ -10,7 +10,7 @@ const Auth = (props) => {
   return (
   <div className={'auth'}>
     {isLoggedIn
-      ? <>
+      ? <div className={'auth__accout'}>
         <Link
           className={'auth__link'}
           to={'/profile'}
@@ -23,7 +23,7 @@ const Auth = (props) => {
           onClick={onClick}>
           <img src={authSvg} alt={'Аккаунт'} className={'auth-img'}/>
         </Link>
-      </>
+      </div>
       : <>
         <Link
           className={'auth__link auth__link_small'}

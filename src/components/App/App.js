@@ -23,6 +23,7 @@ const App = () => {
   const [isShaded, setIsShaded] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
+  const [savedMovies, setSavedMovies] = useState([]);
 
   const history = useHistory();
 
@@ -66,6 +67,16 @@ const App = () => {
     history.push('/movies');
   };
 
+  const changeSavedMovies = (isLiked, movieData) => {
+    let newSavedMovies = [...savedMovies];
+    if (isLiked) {
+      newSavedMovies = savedMovies.filter((item) => item.nameRU !== movieData.nameRU);
+    } else {
+      newSavedMovies.push(movieData);
+    }
+    setSavedMovies(newSavedMovies);
+  };
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className={'page'}>
@@ -82,12 +93,16 @@ const App = () => {
           <Route
             exact
             path={'/movies'}>
-              <Movies />
+              <Movies
+                savedMovies={savedMovies}
+                handleCardClick={changeSavedMovies}/>
           </Route>
           <Route
             exact
             path={'/saved-movies'}>
-              <SavedMovies />
+              <SavedMovies
+                savedMovies={savedMovies}
+                handleCardClick={changeSavedMovies}/>
           </Route>
           <Route
             exact

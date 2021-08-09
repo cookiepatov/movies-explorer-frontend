@@ -8,11 +8,10 @@ import { Burger } from './Burger';
 
 import './Navigation.css';
 
-const isCurrentClassName = (linkLocation) => useHistory().location.pathname === linkLocation;
-
 const Navigation = (props) => {
   const { toggleShading, isLoggedIn } = props;
   const [isOpened, setIsOpened] = useState(false);
+  const history = useHistory();
   const toggleNavigation = () => {
     setIsOpened(!isOpened);
     toggleShading();
@@ -22,6 +21,7 @@ const Navigation = (props) => {
       toggleNavigation();
     }
   };
+  const isCurrentClassName = (linkLocation) => history.location.pathname === linkLocation;
   return (
     isLoggedIn
       ? <>

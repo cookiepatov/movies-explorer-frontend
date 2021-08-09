@@ -6,13 +6,16 @@ import { MoviesCardList } from '../MoviesCardList';
 
 import './SavedMovies.css';
 
-export const SavedMovies = () => {
-  console.log('SavedMovies');
+export const SavedMovies = (props) => {
+  const { savedMovies, handleCardClick } = props;
   return (
-  <main>
-    {'Hello Saved'}
-      <SearchForm />
-      <MoviesCardList />
-  </main>
+  <main className={'savedMovies'}>
+    <SearchForm />
+    <MoviesCardList
+      isFromSaved={true}
+      data={savedMovies}
+      savedMovies={savedMovies}
+      handleCardClick={handleCardClick}/>
+</main>
   );
 };

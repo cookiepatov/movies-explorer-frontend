@@ -4,6 +4,21 @@
   align-items: center;
   justify-self: flex-end;
 }
+.auth__accout {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-self: flex-end;
+  transition: opacity 0.2s ease-in;
+}
+
+.auth__accout:hover {
+  opacity: 0.8;
+}
+
+.auth__accout .auth__link:hover {
+  opacity: 1;
+}
 
 .auth__link {
   color: white;
