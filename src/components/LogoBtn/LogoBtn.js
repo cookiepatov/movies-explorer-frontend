@@ -6,7 +6,7 @@ import './LogoBtn.css';
 import logo from '../../images/C-logo.svg';
 
 export const LogoBtn = () => (
-  <div>
+  <div className={'link-container'}>
     <Link
       className={'logoBtn'}
       to={'/'} >

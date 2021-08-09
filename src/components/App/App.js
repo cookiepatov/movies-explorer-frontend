@@ -46,12 +46,32 @@ const App = () => {
     setCurrentUser(user);
   };
 
+  const handleRegister = (e, values) => {
+    e.preventDefault();
+    setCurrentUser({
+      name: values.name,
+      email: values.email,
+    });
+    setLoggedIn(true);
+    history.push('/movies');
+  };
+
+  const handleLogin = (e, values) => {
+    e.preventDefault();
+    setCurrentUser({
+      name: values.email.split('@')[0],
+      email: values.email,
+    });
+    setLoggedIn(true);
+    history.push('/movies');
+  };
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className={'page'}>
         <Shading isShaded={isShaded}/>
         <Header
-              isLoggedIn={loggedIn}
+              isLoggedIn={loggedIn || false}
               toggleShading={() => setIsShaded(!isShaded)}/>
         <Switch>
           <Route
@@ -79,12 +99,14 @@ const App = () => {
           <Route
             exact
             path={'/signin'}>
-              <Login />
+              <Login
+                handleLogin={handleLogin} />
           </Route>
           <Route
             exact
             path={'/signup'}>
-              <Register />
+              <Register
+                handleRegister={handleRegister} />
           </Route>
           <Route
             exact

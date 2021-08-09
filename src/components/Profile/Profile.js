@@ -60,7 +60,7 @@ export const Profile = ({ handleChangeUser, handleLogout }) => {
           value={user.email}
           type={'email'}
           formType={'profile'}
-          length={{ min: 3, max: 30 }}
+          length={{ min: 5, max: 30 }}
           onChange={handleChange}
           name={'email'}
           title={'E-mail'}
