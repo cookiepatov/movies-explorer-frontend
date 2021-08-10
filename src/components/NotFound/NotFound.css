@@ -46,6 +46,11 @@
   opacity: 0.8;
 }
 
+.notFound__link:focus {
+  outline: none;
+  filter: drop-shadow(0 0 10px #FFFF)
+}
+
 
 @media screen and (max-width: 768px) {
   .notFound__heading {

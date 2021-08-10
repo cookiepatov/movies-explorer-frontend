@@ -5,23 +5,28 @@ import { Navigation } from './Navigation';
 
 import './Header.css';
 
-const hideHeader = () => {
-  const { pathname } = useHistory().location;
-
-  if (pathname === '/signup' || pathname === '/signin' || pathname === '/404') {
-    return true;
-  }
-  return false;
-};
-
 export const Header = (props) => {
-  const { isLoggedIn, toggleShading } = props;
+  const {
+    isLoggedIn, toggleShading, navigationOpened, navButtonClick, disabled,
+  } = props;
+
+  const hideHeader = () => {
+    const { pathname } = useHistory().location;
+    if (pathname === '/signup' || pathname === '/signin' || pathname === '/404') {
+      return true;
+    }
+    return false;
+  };
+
   return (
     hideHeader() ? <></> : <header className={'header'}>
-      <LogoBtn />
+      <LogoBtn disabled={disabled}/>
       <Navigation
+        disabled={disabled}
+        navigationOpened={navigationOpened}
         toggleShading={toggleShading}
-        isLoggedIn={isLoggedIn}/>
+        isLoggedIn={isLoggedIn}
+        navButtonClick={navButtonClick}/>
     </header>
   );
 };

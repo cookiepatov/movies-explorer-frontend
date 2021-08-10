@@ -58,6 +58,11 @@
   opacity: 0.8;
 }
 
+.footer__link:focus {
+  outline: none;
+  filter: drop-shadow(0 0 10px #FFFF)
+}
+
 .copyright {
   margin: 0;
   font-style: normal;

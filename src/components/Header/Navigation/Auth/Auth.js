@@ -1,43 +1,45 @@
 import React from 'react';
 
-import { Link, withRouter } from 'react-router-dom';
-
 import authSvg from '../../../../images/account-logo.svg';
+import ToggleableLink from '../../../TogleableLink/TogglableLink';
 import './Auth.css';
 
-const Auth = (props) => {
-  const { isLoggedIn, onClick } = props;
+export const Auth = (props) => {
+  const { isLoggedIn, onClick, disabled } = props;
   return (
   <div className={'auth'}>
     {isLoggedIn
       ? <div className={'auth__accout'}>
-        <Link
+        <ToggleableLink
+          disabled={disabled}
           className={'auth__link'}
           to={'/profile'}
           onClick={onClick}>
           Аккаунт
-        </Link>
-        <Link
+        </ToggleableLink>
+        <ToggleableLink
+          disabled={disabled}
           className={'auth__link auth__link_img '}
           to={'/profile'}
           onClick={onClick}>
           <img src={authSvg} alt={'Аккаунт'} className={'auth-img'}/>
-        </Link>
+        </ToggleableLink>
       </div>
       : <>
-        <Link
+        <ToggleableLink
+          disabled={disabled}
           className={'auth__link auth__link_small'}
           to={'/signup'}>
           Регистрация
-        </Link>
-        <Link className={'auth__link auth__link_green auth__link_small'}
+        </ToggleableLink>
+        <ToggleableLink
+          className={'auth__link auth__link_green auth__link_small'}
+          disabled={disabled}
           to={'/signin'}>
           Войти
-        </Link>
+        </ToggleableLink>
       </>
     }
   </div>
   );
 };
-
-export default withRouter(Auth);

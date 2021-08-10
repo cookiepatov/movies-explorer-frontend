@@ -1,28 +1,31 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+
+import ToggleableLink from '../TogleableLink/TogglableLink';
 import './Footer.css';
 
-const hideFooter = () => {
-  const { pathname } = useHistory().location;
-
-  if (pathname === '/signup' || pathname === '/signin' || pathname === '/profile' || pathname === '/404') {
-    return true;
-  }
-  return false;
-};
-
-const getFooterLink = (href, title) => (
-  <li className={'footer__item'}>
-    <a
-      className={'footer__link'}
-      href={href}>
-      {title}
-    </a>
-  </li>
-);
-
-export const Footer = () => {
+export const Footer = (props) => {
+  const history = useHistory();
   const year = new Date().getFullYear();
+
+  const hideFooter = () => {
+    const { pathname } = history.location;
+    if (pathname === '/signup' || pathname === '/signin' || pathname === '/profile' || pathname === '/404') {
+      return true;
+    }
+    return false;
+  };
+  const getFooterLink = (href, title, disabled) => (
+    <li className={'footer__item'}>
+      <ToggleableLink
+        external={true}
+        disabled={disabled}
+        className={'footer__link'}
+        to={href}>
+        {title}
+      </ToggleableLink>
+    </li>
+  );
 
   return (
     hideFooter() ? <></>
@@ -35,9 +38,9 @@ export const Footer = () => {
             &copy; {year}
           </p>
           <ul className={'footer__links'}>
-            {getFooterLink('https://praktikum.yandex.ru/', 'Яндекс.Практикум')}
-            {getFooterLink('https://github.com/cookiepatov/', 'GitHub')}
-            {getFooterLink('https://www.facebook.com/Cookiepatov/', 'Facebook')}
+            {getFooterLink('https://praktikum.yandex.ru/', 'Яндекс.Практикум', props.disabled)}
+            {getFooterLink('https://github.com/cookiepatov/', 'GitHub', props.disabled)}
+            {getFooterLink('https://www.facebook.com/Cookiepatov/', 'Facebook', props.disabled)}
           </ul>
         </div>
       </footer>

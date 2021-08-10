@@ -16,10 +16,6 @@
   opacity: 0.8;
 }
 
-.auth__accout .auth__link:hover {
-  opacity: 1;
-}
-
 .auth__link {
   color: white;
   text-decoration: none;
@@ -35,10 +31,10 @@
   margin-right: 0;
 }
 
-.auth__link:hover {
-  opacity: 0.8;
+.auth__link:focus {
+  outline: none;
+  filter: drop-shadow(0 0 10px #FFFF);
 }
-
 
 .auth__link_img {
   background-color: #313131;

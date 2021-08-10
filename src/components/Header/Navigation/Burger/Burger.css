@@ -17,6 +17,14 @@
   opacity: 0.8;
 }
 
+.burger:focus {
+  outline: none;
+}
+
+.burger:focus .burger__line {
+  box-shadow: 0 0 10px #FFFF;
+}
+
 
 .burger__line {
   height: 2px;

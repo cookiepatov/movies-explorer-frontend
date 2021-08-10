@@ -11,21 +11,31 @@ import { data } from '../../utils/constants/inititalCardsData';
 import './Movies.css';
 
 export const Movies = (props) => {
-  const { savedMovies, handleCardClick } = props;
+  const { savedMovies, handleCardClick, disabled } = props;
   const [isLoading, setIsLoading] = useState('true');
+  const [moviesData, setMoviesData] = useState([]);
   useEffect(() => {
-    setTimeout(() => setIsLoading(false), 1000);
+    setTimeout(() => {
+      setIsLoading(false);
+      setMoviesData(data);
+    }, 1000);
   }, []);
   return (
     <main className={'movies'}>
-        <SearchForm />
+        <SearchForm
+          disabled={disabled} />
         {isLoading
           ? <Preloader />
           : <><MoviesCardList
-            data={data}
+            disabled={disabled}
+            data={moviesData}
             savedMovies={savedMovies}
             handleCardClick={handleCardClick}/>
-            <button className={'more-button'}>Ещё</button>
+            <button
+              disabled={disabled}
+              className={'more-button'}>
+                Ещё
+            </button>
             </>}
     </main>
   );

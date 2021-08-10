@@ -1,7 +1,8 @@
-import { React, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { React } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { classNames } from '../../../utils';
+import ToggleableLink from '../../TogleableLink/TogglableLink';
 
 import { Auth } from './Auth';
 import { Burger } from './Burger';
@@ -9,64 +10,61 @@ import { Burger } from './Burger';
 import './Navigation.css';
 
 const Navigation = (props) => {
-  const { toggleShading, isLoggedIn } = props;
-  const [isOpened, setIsOpened] = useState(false);
+  const {
+    isLoggedIn, navigationOpened, navButtonClick, disabled,
+  } = props;
   const history = useHistory();
-  const toggleNavigation = () => {
-    setIsOpened(!isOpened);
-    toggleShading();
-  };
-  const closeNavigation = () => {
-    if (isOpened) {
-      toggleNavigation();
-    }
-  };
   const isCurrentClassName = (linkLocation) => history.location.pathname === linkLocation;
   return (
     isLoggedIn
       ? <>
         <Burger
-          isOpened={isOpened}
-          onClick={toggleNavigation} />
-        <nav className={classNames('navigation-container', isOpened && 'navigation-container_opened')}>
+          isOpened={navigationOpened}
+          onClick={navButtonClick}
+          disabled={disabled} />
+        <nav className={classNames('navigation-container', navigationOpened && 'navigation-container_opened')}>
           <ul className={'navigation'}>
             <li className={'navigation__item'}>
-              <Link
+              <ToggleableLink
+                disabled={disabled}
                 className={classNames('navigation__link', isCurrentClassName('/') && 'navigation__link_current', 'navigation__link_hidden')}
                 to={'/'}
-                onClick={closeNavigation}>
+                onClick={navigationOpened && navButtonClick}>
                 Главная
-              </Link>
+              </ToggleableLink>
             </li>
             <li className={'navigation__item'}>
-              <Link
+              <ToggleableLink
+                disabled={disabled}
                 className={classNames('navigation__link', isCurrentClassName('/movies') && 'navigation__link_current')}
                 to={'/movies'}
-                onClick={closeNavigation}>
+                onClick={navigationOpened && navButtonClick}>
                 Фильмы
-              </Link>
+              </ToggleableLink>
             </li>
             <li className={'navigation__item'}>
-              <Link
+              <ToggleableLink
+                disabled={disabled}
                 className={classNames('navigation__link', isCurrentClassName('/saved-movies') && 'navigation__link_current')}
                 to={'/saved-movies'}
-                onClick={closeNavigation}>
+                onClick={navigationOpened && navButtonClick}>
                 Сохраненные&nbsp;фильмы
-              </Link>
+              </ToggleableLink>
             </li>
           </ul>
           <Auth
+            disabled={disabled}
             isLoggedIn={isLoggedIn}
-            onClick={closeNavigation} />
+            onClick={navigationOpened && navButtonClick} />
         </nav>
       </>
       : <nav className={classNames('navigation-simple')}>
         <Auth
+          disabled={disabled}
           isLoggedIn={isLoggedIn}
-          onClick={closeNavigation} />
+          onClick={navigationOpened && navButtonClick} />
       </nav>
   );
 };
 
-/* export default withRouter(Navigation); */
 export default Navigation;

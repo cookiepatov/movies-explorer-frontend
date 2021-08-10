@@ -6,8 +6,13 @@
   position: fixed;
   transition: opacity 0.2s ease-in;
   z-index: -1;
+  border: none;
 }
 .shading_visible {
   opacity: 0.3;
   z-index: 2;
+}
+
+.shading_top {
+  z-index: 3;
 }

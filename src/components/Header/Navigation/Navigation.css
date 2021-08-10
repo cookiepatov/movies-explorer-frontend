@@ -28,6 +28,11 @@
   transition: opacity 0.2s ease-in;
 }
 
+.navigation__link:focus {
+  outline: none;
+  filter: drop-shadow(0 0 10px #FFFF);
+}
+
 .navigation__link:hover {
   opacity: 0.8;
 }

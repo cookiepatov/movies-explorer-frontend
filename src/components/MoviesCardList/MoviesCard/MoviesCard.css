@@ -1,10 +1,10 @@
 .card {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
 }
 
 .card__link {
+  box-sizing: border-box;
   transition: opacity 0.2s ease-in;
 }
 
@@ -15,6 +15,11 @@
 
 .card__link:hover .card__image {
   filter: brightness(1.1);
+}
+
+.card__link:focus {
+  outline: none;
+  filter: drop-shadow(0 0 1px #FFFF)
 }
 
 .card__middleRow {
@@ -46,6 +51,11 @@
   justify-content: center;
   align-items: center;
   transition: opacity 0.2s ease-in;
+}
+
+.card__button:focus {
+  outline: none;
+  filter: drop-shadow(0 0 5px #FFFF)
 }
 
 .card__button_invisible {

@@ -1,19 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import { InputElement } from '../InputElement';
+import ToggleableLink from '../TogleableLink/TogglableLink';
 
 import './AuthForm.css';
 
 export const AuthForm = (props) => {
   const {
-    isRegister, onChange, onSubmit, inputsValidity, errorMsgs, formValidity,
+    isRegister, onChange, onSubmit, inputsValidity, errorMsgs, formValidity, disabled,
   } = props;
   return (
     <form
       className={'auth-form'}
       onSubmit={onSubmit}>
       {isRegister && <InputElement
+          disabled={disabled}
           value={''}
           type={'text'}
           formType={'auth'}
@@ -26,6 +27,7 @@ export const AuthForm = (props) => {
           errorText={errorMsgs.name}
         />}
         <InputElement
+          disabled={disabled}
           value={''}
           type={'email'}
           formType={'auth'}
@@ -38,6 +40,7 @@ export const AuthForm = (props) => {
           errorText={errorMsgs.email}
         />
         <InputElement
+          disabled={disabled}
           value={''}
           type={'password'}
           formType={'auth'}
@@ -59,11 +62,12 @@ export const AuthForm = (props) => {
           <span className={'auth-bottom__message'}>
             {isRegister ? 'Уже зарегистрированы? ' : 'Ещё не зарегистрированы? '}
           </span>
-          <Link
+          <ToggleableLink
+            disabled={disabled}
             className={'auth-bottom__link'}
             to={isRegister ? '/signin' : '/signup'}>
               {isRegister ? 'Войти' : 'Зарегистрироваться'}
-          </Link>
+          </ToggleableLink>
         </div>
     </form>
   );

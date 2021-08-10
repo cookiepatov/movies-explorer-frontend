@@ -75,6 +75,11 @@
   opacity: 0.8;
 }
 
+.link:focus {
+  outline: none;
+  filter: drop-shadow(0 0 10px #FFFF)
+}
+
 .photo {
   align-self: center;
   border-radius: 10px;
@@ -118,7 +123,7 @@
     padding: 70px 14px 70px 14px;
   }
 
-  
+
 
   .info__name {
     font-size: 30px;
@@ -134,7 +139,7 @@
     line-height: 16px;
   }
 
-  
+
 
   .links__item {
     margin-right: 26px;

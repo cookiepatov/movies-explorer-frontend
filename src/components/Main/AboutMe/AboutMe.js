@@ -5,17 +5,19 @@ import { SectionHeading } from '../SectionHeading';
 import photo from '../../../images/user-photo.jpg';
 
 import './AboutMe.css';
+import ToggleableLink from '../../TogleableLink/TogglableLink';
 
-const getSocialLinkItem = (href, title) => (
-  <li className={'links__item'}>
-    <a
-      className={'link'}
-      href={href}>
-      {title}
-    </a>
-  </li>);
-
-export const AboutMe = () => (
+export const AboutMe = ({ disabled }) => {
+  const getSocialLinkItem = (href, title, notWorkinbg) => (
+    <li className={'links__item'}>
+      <ToggleableLink
+        disabled={notWorkinbg}
+        className={'link'}
+        to={href}>
+        {title}
+      </ToggleableLink>
+    </li>);
+  return (
   <section id={'about_me'} className={'about-me'}>
     <SectionHeading
       title={'Студент'} />
@@ -34,12 +36,13 @@ export const AboutMe = () => (
         или снимаю красивые штуки с квадрокоптера
       </p>
       <ul className={'info__links'}>
-        {getSocialLinkItem('https://github.com/cookiepatov/', 'GitHub')}
-        {getSocialLinkItem('https://www.facebook.com/Cookiepatov/', 'Facebook')}
-        {getSocialLinkItem('https://www.linkedin.com/in/evgeny-reynat-612445210/', 'LinkedIn')}
-        {getSocialLinkItem('https://www.instagram.com/cookiepatov/', 'Instagram')}
+        {getSocialLinkItem('https://github.com/cookiepatov/', 'GitHub', disabled)}
+        {getSocialLinkItem('https://www.facebook.com/Cookiepatov/', 'Facebook', disabled)}
+        {getSocialLinkItem('https://www.linkedin.com/in/evgeny-reynat-612445210/', 'LinkedIn', disabled)}
+        {getSocialLinkItem('https://www.instagram.com/cookiepatov/', 'Instagram', disabled)}
       </ul>
       <img className={'photo'} alt={'Фотография'} src={photo} />
     </div>
   </section>
-);
+  );
+};

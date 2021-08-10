@@ -6,7 +6,7 @@ import { LogoBtn } from '../LogoBtn/LogoBtn';
 import './Register.css';
 
 export const Register = (props) => {
-  const { handleRegister } = props;
+  const { handleRegister, disabled } = props;
   const [inputsValidity, setValidity] = useState({ email: true, password: true });
   const [formValiduty, setFormValidity] = useState(false);
   const [inputValues, setInputValues] = useState({ name: '', password: '', email: '' });
@@ -28,9 +28,10 @@ export const Register = (props) => {
 
   return (
     <main className={'register'}>
-      <LogoBtn />
+      <LogoBtn disabled={disabled} />
       <h2 className={'register__message'}>Добро пожаловать!</h2>
       <AuthForm
+        disabled={disabled}
         isRegister={true}
         formValidity={formValiduty}
         inputsValidity={inputsValidity}

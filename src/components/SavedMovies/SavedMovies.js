@@ -7,11 +7,13 @@ import { MoviesCardList } from '../MoviesCardList';
 import './SavedMovies.css';
 
 export const SavedMovies = (props) => {
-  const { savedMovies, handleCardClick } = props;
+  const { savedMovies, handleCardClick, disabled } = props;
   return (
   <main className={'savedMovies'}>
-    <SearchForm />
+    <SearchForm
+      disabled={disabled} />
     <MoviesCardList
+      disabled={disabled}
       isFromSaved={true}
       data={savedMovies}
       savedMovies={savedMovies}

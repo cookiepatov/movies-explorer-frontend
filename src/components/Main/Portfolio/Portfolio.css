@@ -47,6 +47,12 @@
   background-color: #272727;
 }
 
+.portfolio__link:focus {
+  outline: none;
+  background-color: #272727;
+  filter: brightness(1.2);
+}
+
 
 @media screen and (max-width: 768px) {
   .portfolio {

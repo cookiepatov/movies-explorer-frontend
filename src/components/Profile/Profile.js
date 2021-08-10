@@ -5,7 +5,7 @@ import './Profile.css';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 import { InputElement } from '../InputElement';
 
-export const Profile = ({ handleChangeUser, handleLogout }) => {
+export const Profile = ({ handleChangeUser, handleLogout, disabled }) => {
   const user = useContext(CurrentUserContext);
   const [inputsValidity, setValidity] = useState({ name: true, email: true });
   const [formValiduty, setFormValidity] = useState(false);
@@ -45,6 +45,7 @@ export const Profile = ({ handleChangeUser, handleLogout }) => {
         className={'profile__form'}
         onSubmit={(e) => handleChangeUser(e, inputValues)}>
         <InputElement
+          disabled={disabled}
           value={user.name}
           type={'text'}
           formType={'profile'}
@@ -57,6 +58,7 @@ export const Profile = ({ handleChangeUser, handleLogout }) => {
           errorText={errorMsgs.name}
         />
         <InputElement
+          disabled={disabled}
           value={user.email}
           type={'email'}
           formType={'profile'}
@@ -69,12 +71,13 @@ export const Profile = ({ handleChangeUser, handleLogout }) => {
           errorText={errorMsgs.email}
         />
         <button
-          disabled={!formValiduty}
+          disabled={disabled || !formValiduty}
           className={'profile__button'}
           type={'submit'}>
           Редактировать
         </button>
         <button
+          disabled={disabled}
           className={'profile__button profile__button_logout'}
           type={'button'}
           onClick={() => handleLogout()}>

@@ -4,11 +4,12 @@ import './MoviesCardList.css';
 
 export const MoviesCardList = (props) => {
   const {
-    data, isFromSaved, savedMovies, handleCardClick,
+    data, isFromSaved, savedMovies, handleCardClick, disabled,
   } = props;
   return (
   <ul className={'card-list'}>
     {data.map((movie, index) => <MoviesCard
+      disabled={disabled}
       key={index}
       isFromSaved={isFromSaved}
       movieData={movie}

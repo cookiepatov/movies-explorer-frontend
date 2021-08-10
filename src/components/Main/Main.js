@@ -9,13 +9,13 @@ import { Portfolio } from './Portfolio';
 
 import './Main.css';
 
-export const Main = () => (
+export const Main = ({ disabled }) => (
     <main className={'main'}>
       <Promo />
-      <NavTab />
+      <NavTab disabled={disabled} />
       <AboutProject />
       <Techs />
-      <AboutMe />
-      <Portfolio />
+      <AboutMe disabled={disabled} />
+      <Portfolio disabled={disabled} />
     </main>
 );

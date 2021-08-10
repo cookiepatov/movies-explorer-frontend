@@ -29,10 +29,19 @@
   font-weight: normal;
   font-size: 18px;
   line-height: 20px;
-  color: #8B8B8B;
   border: none;
   background-color: transparent;
   flex-grow: 1;
+  color: white;
+}
+
+.searchForm__input::placeholder {
+  color: #8B8B8B;
+}
+
+.searchForm__input:focus {
+  outline: none;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.233));
 }
 
 .searchForm__submit {
@@ -47,6 +56,11 @@
   font-weight: 500;
   font-size: 14px;
   line-height: 18px;
+}
+
+.searchForm__submit:focus {
+  outline: none;
+  filter: brightness(1.5);
 }
 
 
@@ -115,6 +129,10 @@
 .searchForm__label>input:not(checked)+span::before {
   background-color: transparent;
   border: 1px #aaaaaa38 solid;
+}
+
+.searchForm__label>input:focus+span::before {
+  box-shadow:0 0 10px rgb(255, 255, 255)
 }
 
 .searchForm__ckeckbox {

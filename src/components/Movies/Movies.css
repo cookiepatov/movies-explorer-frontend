@@ -30,6 +30,11 @@
   background-color: #4285F4;
 }
 
+.more-button:focus {
+  outline: none;
+  filter: brightness(1.2)
+}
+
 
 @media screen and (max-width: 768px) {
   .movies {

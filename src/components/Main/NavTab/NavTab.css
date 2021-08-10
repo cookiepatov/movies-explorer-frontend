@@ -41,6 +41,11 @@
   opacity: 0.8;
 }
 
+.navTab__link:focus {
+  outline: none;
+  filter: drop-shadow(0 0 10px #FFFF)
+}
+
 
 
 @media  (max-width: 520px) {
