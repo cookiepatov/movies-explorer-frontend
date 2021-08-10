@@ -11,6 +11,7 @@ export const AboutMe = ({ disabled }) => {
   const getSocialLinkItem = (href, title, notWorkinbg) => (
     <li className={'links__item'}>
       <ToggleableLink
+        external={true}
         disabled={notWorkinbg}
         className={'link'}
         to={href}>
