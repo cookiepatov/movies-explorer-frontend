@@ -5,7 +5,11 @@ import './Portfolio.css';
 export const Portfolio = ({ disabled }) => {
   const getLinkObject = (href, title, notWorking) => (
     <li className={'portfolio__item'}>
-      <ToggleableLink to={href} disabled={notWorking} className={'portfolio__link'}>
+      <ToggleableLink
+        to={href}
+        disabled={notWorking}
+        className={'portfolio__link'}
+        external={true}>
         {title}
         <span className={'arrow'}>↗</span>
       </ToggleableLink>
