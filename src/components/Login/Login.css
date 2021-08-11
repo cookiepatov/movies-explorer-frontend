@@ -48,3 +48,11 @@
     padding-top: 20px;
   }
 }
+
+
+@media screen and (max-height: 500px) {
+  .login {
+    height: auto;
+    padding-top: 20px;
+  }
+}

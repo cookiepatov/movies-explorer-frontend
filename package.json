@@ -16,7 +16,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "lint": "npx eslint ."
+    "lint": "npx eslint .",
+    "deploy": "npm run build && scp -r ./build/* cookiepatov@84.201.134.234:/home/cookiepatov/movies-explorer/movies-explorer-frontend/"
   },
   "eslintConfig": {
     "extends": [
