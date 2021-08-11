@@ -40,3 +40,10 @@
         margin-bottom: 80px;
     }
 }
+
+@media screen and (max-height: 840px) {
+  .register {
+    height: calc(100vh - 20px);
+    padding-top: 20px;
+  }
+}

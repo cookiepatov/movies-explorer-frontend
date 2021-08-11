@@ -80,3 +80,10 @@
     margin-bottom: 30px;
   }
 }
+
+
+@media screen and (max-height: 840px) {
+  .notFound__heading {
+    margin-top: 150px;
+  }
+}

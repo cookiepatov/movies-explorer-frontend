@@ -65,28 +65,36 @@
     .profile__button_logout {
         margin-bottom: 269px;
     }
-    
+
 }
 
 @media screen and (max-width:520px) {
     .profile__welcome {
-        margin-top: 144px;
-        font-size: 24px;
-        line-height: 29px;
+      margin-top: 144px;
+      font-size: 24px;
+      line-height: 29px;
     }
     .profile__form {
-        margin-top: 80px;
-        margin-left: 30px;
-        margin-right: 30px;
-        width: calc(100% - 60px);
+      margin-top: 80px;
+      margin-left: 30px;
+      margin-right: 30px;
+      width: calc(100% - 60px);
     }
 
     .profile__button {
-        font-size: 13px;
-        line-height: 16px;
+      font-size: 13px;
+      line-height: 16px;
     }
     .profile__button_logout {
-        margin-bottom: 40px;
+      margin-bottom: 40px;
     }
-    
+}
+
+@media screen and (max-height: 840px) {
+  .profile__welcome {
+    margin-top: 80px;
+  }
+  .profile__button_logout {
+    margin-bottom: 20px;
+}
 }

@@ -20,22 +20,31 @@
 
 @media screen and (max-width: 768px) {
     .login {
-        height: calc(100vh - 232px);
-        padding-top: 232px;
+      height: calc(100vh - 232px);
+      padding-top: 232px;
     }
 }
 
+
+
 @media screen and (max-width: 520px) {
-    .login {
-        height: calc(100vh - 56px);
-        padding-top: 56px;
-        align-items: center;
-        padding-left: 30px;
-        padding-right: 30px;
-        width: calc(100% - 60px);
-    }
-    .login__message {
-        margin-top: 50px;
-        margin-bottom: 80px;
-    }
+  .login {
+    height: calc(100vh - 56px);
+    padding-top: 56px;
+    align-items: center;
+    padding-left: 30px;
+    padding-right: 30px;
+    width: calc(100% - 60px);
+  }
+  .login__message {
+    margin-top: 50px;
+    margin-bottom: 80px;
+  }
+}
+
+@media screen and (max-height: 840px) {
+  .login {
+    height: calc(100vh - 20px);
+    padding-top: 20px;
+  }
 }

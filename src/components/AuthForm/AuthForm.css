@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 }
 
 .auth-form__submit {
@@ -92,4 +93,10 @@
         font-size: 12px;
         line-height: 15px;
     }
+}
+
+@media screen and (max-height: 840px) {
+  .auth-bottom {
+    margin-bottom: 20px;
+  }
 }
