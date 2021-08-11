@@ -15,13 +15,15 @@ export const SearchForm = (props) => {
     <form className={'searchForm'} onSubmit={(e) => handleSearch(e, searchData)} disabled={disabled}>
       <div className={'searchForm__container'}>
         <input
+          required={true}
           disabled={disabled}
           className={'searchForm__input'}
           onChange={handleInputChange}
           placeholder={'Фильм'}
           type={'text'} />
         <button
-          disabled={disabled}
+          type={'submit'}
+          disabled={disabled || searchData.searchString === ''}
           className={'searchForm__submit'}>
           Поиск
         </button>

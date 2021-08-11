@@ -51,11 +51,18 @@
   border: none;
   width: 100px;
   height: 52px;
-  cursor: pointer;
   transition: opacity 0.2s ease-in;
   font-weight: 500;
   font-size: 14px;
   line-height: 18px;
+}
+
+.searchForm__submit:enabled {
+  cursor: pointer;
+}
+
+.searchForm__submit:disabled {
+  filter: grayscale(1);
 }
 
 .searchForm__submit:focus {
@@ -64,7 +71,7 @@
 }
 
 
-.searchForm__submit:hover {
+.searchForm__submit:enabled:hover {
   opacity: 0.8;
 }
 
