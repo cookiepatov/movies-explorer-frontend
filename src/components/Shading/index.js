@@ -1,1 +1,0 @@
-export { Shading } from './Shading';
