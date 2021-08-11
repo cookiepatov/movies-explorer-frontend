@@ -1,0 +1,17 @@
+{
+    "extends": [
+      "airbnb-base",
+      "plugin:react/recommended"
+    ],
+    "rules": {
+      "no-underscore-dangle": 0,
+      "react/prop-types": "off",
+      "import/prefer-default-export": "off",
+      "no-use-before-define": "off"
+    },
+    "parser": "babel-eslint",
+    "env": {
+      "browser": true,
+      "node": true
+    }
+  }

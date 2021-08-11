@@ -1,0 +1,122 @@
+.navigation-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  padding-left: 44px;
+}
+
+.navigation {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.navigation__item {
+  margin-right: 16px;
+}
+
+.navigation__link {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 18px;
+  transition: opacity 0.2s ease-in;
+}
+
+.navigation__link:focus {
+  outline: none;
+  filter: drop-shadow(0 0 10px #FFFF);
+}
+
+.navigation__link:hover {
+  opacity: 0.8;
+}
+
+.navigation__link_hidden {
+  display: none;
+}
+
+.navigation__item:last-of-type {
+  margin-right: 0;
+}
+
+
+@media screen and (max-width: 768px) {
+  .navigation-container {
+    padding: 0;
+    background: #202020;
+    position: fixed;
+    top: 0;
+    right: 0;
+    transition: width 0.2s ease-in;
+    height: 100vh;
+    width: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navigation-container_opened {
+    right: 0;
+    position: fixed;
+    z-index: 1;
+    width: 520px;
+  }
+
+  .navigation {
+    display: grid;
+    grid-template-columns: auto;
+    gap: 28px;
+    margin-top: 159px;
+    justify-content: center;
+  }
+
+  .navigation__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+  }
+
+  .navigation__link {
+    position: relative;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .navigation__link_hidden {
+    display: unset;
+  }
+
+  .navigation__link_current::after {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: white;
+    content: '';
+    bottom: -4px;
+    left: 0
+  }
+}
+
+
+@media screen and (max-width: 520px) {
+  .navigation-container_opened {
+    right: 0;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+  }
+  .navigation {
+    margin-top: 144px;
+    gap: 24px;
+  }
+}
