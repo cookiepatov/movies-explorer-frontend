@@ -1,3 +1,4 @@
 import { classNames } from './classNames';
+import { getBeatMovies } from './MoviesApi';
 
-export { classNames };
+export { classNames, getBeatMovies };
