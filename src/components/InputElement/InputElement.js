@@ -16,12 +16,14 @@ export const InputElement = (props) => {
     value,
     errorText,
     disabled,
+    pattern,
   } = props;
 
   return (
         <div className={classNames('input-container', `input-container_${formType}`, !validity && 'input-container_invalid')}>
             <label htmlFor={`${name}-input`} className={`input-title input-title_${formType}`}>{title}</label>
             <input
+                pattern={pattern}
                 disabled={disabled}
                 id={`${name}-input`}
                 type={type}

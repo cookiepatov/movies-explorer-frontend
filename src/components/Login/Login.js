@@ -6,7 +6,7 @@ import { LogoBtn } from '../LogoBtn/LogoBtn';
 import './Login.css';
 
 export const Login = (props) => {
-  const { handleLogin, disabled } = props;
+  const { handleLogin, disabled, authError } = props;
   const [inputsValidity, setValidity] = useState({ email: true, password: true });
   const [formValiduty, setFormValidity] = useState(false);
   const [inputValues, setInputValues] = useState({ password: '', email: '' });
@@ -31,6 +31,7 @@ export const Login = (props) => {
       <LogoBtn disabled={disabled} />
       <h2 className={'login__message'}>Рады видеть!</h2>
       <AuthForm
+        authError={authError}
         disabled={disabled}
         isRegister={false}
         formValidity={formValiduty}

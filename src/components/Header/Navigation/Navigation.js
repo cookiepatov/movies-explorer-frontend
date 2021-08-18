@@ -29,7 +29,7 @@ const Navigation = (props) => {
                 disabled={disabled}
                 className={classNames('navigation__link', isCurrentClassName('/') && 'navigation__link_current', 'navigation__link_hidden')}
                 to={'/'}
-                onClick={navigationOpened && navButtonClick}>
+                onClick={navigationOpened ? navButtonClick : () => {}}>
                 Главная
               </ToggleableLink>
             </li>
@@ -38,7 +38,7 @@ const Navigation = (props) => {
                 disabled={disabled}
                 className={classNames('navigation__link', isCurrentClassName('/movies') && 'navigation__link_current')}
                 to={'/movies'}
-                onClick={navigationOpened && navButtonClick}>
+                onClick={navigationOpened ? navButtonClick : () => {}}>
                 Фильмы
               </ToggleableLink>
             </li>
@@ -47,7 +47,7 @@ const Navigation = (props) => {
                 disabled={disabled}
                 className={classNames('navigation__link', isCurrentClassName('/saved-movies') && 'navigation__link_current')}
                 to={'/saved-movies'}
-                onClick={navigationOpened && navButtonClick}>
+                onClick={navigationOpened ? navButtonClick : () => {}}>
                 Сохраненные&nbsp;фильмы
               </ToggleableLink>
             </li>
@@ -55,14 +55,14 @@ const Navigation = (props) => {
           <Auth
             disabled={disabled}
             isLoggedIn={isLoggedIn}
-            onClick={navigationOpened && navButtonClick} />
+            onClick={navigationOpened ? navButtonClick : () => {}} />
         </nav>
       </>
       : <nav className={classNames('navigation-simple')}>
         <Auth
           disabled={disabled}
           isLoggedIn={isLoggedIn}
-          onClick={navigationOpened && navButtonClick} />
+          onClick={navigationOpened ? navButtonClick : () => {}} />
       </nav>
   );
 };

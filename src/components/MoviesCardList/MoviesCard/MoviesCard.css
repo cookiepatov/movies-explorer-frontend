@@ -1,6 +1,7 @@
 .card {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .card__link {
@@ -9,7 +10,10 @@
 }
 
 .card__image {
+  height: 151px;
   width: 100%;
+  object-fit: cover;
+  object-position: center;
   transition: filter 0.2s ease-in;
 }
 
@@ -55,7 +59,9 @@
 
 .card__button:focus {
   outline: none;
-  filter: drop-shadow(0 0 2px #FFFF)
+  filter: drop-shadow(0 0 2px #FFFF);
+  opacity: 1;
+
 }
 
 .card__button_invisible {
@@ -102,6 +108,30 @@
   margin-bottom: 6px;
 }
 
+@media screen and (max-width: 1280px) {
+  .card__image {
+    height: calc((100vw - 200px) / (4 * 1.78));
+  }
+}
+
+@media screen and (max-width: 1080px) {
+  .card__image {
+      height: calc((100vw - 180px) / (3 * 1.78));
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .card__image {
+    height: calc((100vw - 160px) / (2 * 1.78));
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .card__image {
+    height: calc((100vw - 140px) / (2 * 1.78));
+  }
+}
 
 
 @media screen and (max-width: 520px) {
@@ -112,5 +142,8 @@
   .card__duration {
     font-size: 10px;
     line-height: 12px;
+  }
+  .card__image {
+    height: calc((100vw - 20px) / 1.78);
   }
 }

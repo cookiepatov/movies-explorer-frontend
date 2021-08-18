@@ -3,17 +3,20 @@ import React from 'react';
 import { InputElement } from '../InputElement';
 import ToggleableLink from '../TogleableLink/TogglableLink';
 
+import { namePattern } from '../../utils/constants/regExp';
+
 import './AuthForm.css';
 
 export const AuthForm = (props) => {
   const {
-    isRegister, onChange, onSubmit, inputsValidity, errorMsgs, formValidity, disabled,
+    isRegister, onChange, onSubmit, inputsValidity, errorMsgs, formValidity, disabled, authError,
   } = props;
   return (
     <form
       className={'auth-form'}
       onSubmit={onSubmit}>
       {isRegister && <InputElement
+          pattern={namePattern}
           disabled={disabled}
           value={''}
           type={'text'}
@@ -44,7 +47,7 @@ export const AuthForm = (props) => {
           value={''}
           type={'password'}
           formType={'auth'}
-          length={{ min: 7, max: 30 }}
+          length={{ min: 8, max: 30 }}
           onChange={onChange}
           name={'password'}
           title={'Пароль'}
@@ -52,6 +55,7 @@ export const AuthForm = (props) => {
           placeholder={''}
           errorText={errorMsgs.password}
         />
+        {!!authError.length && <span className={'auth-form__server-error'}>{authError}</span>}
         <button
           type={'submit'}
           disabled={!formValidity}

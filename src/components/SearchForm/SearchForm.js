@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 import './SearchForm.css';
 
 export const SearchForm = (props) => {
-  const { handleSearch, disabled } = props;
-  const [searchData, setSearchData] = useState({ short: true, searchString: '' });
+  const { handleSearch, disabled, handleCheckbox } = props;
+  const [searchData, setSearchData] = useState({ short: false, searchString: '' });
 
   const handleInputChange = (e) => {
     setSearchData({ ...searchData, searchString: e.target.value });
   };
   const handleCheckboxChange = (e) => {
     setSearchData({ ...searchData, short: e.target.checked });
+    handleCheckbox(e.target.checked);
   };
   return (
     <form className={'searchForm'} onSubmit={(e) => handleSearch(e, searchData)} disabled={disabled}>

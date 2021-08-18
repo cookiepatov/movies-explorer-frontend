@@ -6,7 +6,7 @@ import { LogoBtn } from '../LogoBtn/LogoBtn';
 import './Register.css';
 
 export const Register = (props) => {
-  const { handleRegister, disabled } = props;
+  const { handleRegister, disabled, authError } = props;
   const [inputsValidity, setValidity] = useState({ email: true, password: true });
   const [formValiduty, setFormValidity] = useState(false);
   const [inputValues, setInputValues] = useState({ name: '', password: '', email: '' });
@@ -37,7 +37,8 @@ export const Register = (props) => {
         inputsValidity={inputsValidity}
         errorMsgs={errorMsgs}
         onSubmit={(e) => handleRegister(e, inputValues)}
-        onChange={handleChange}/>
+        onChange={handleChange}
+        authError={authError}/>
     </main>
   );
 };

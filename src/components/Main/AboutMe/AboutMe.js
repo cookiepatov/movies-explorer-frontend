@@ -8,6 +8,10 @@ import './AboutMe.css';
 import ToggleableLink from '../../TogleableLink/TogglableLink';
 
 export const AboutMe = ({ disabled }) => {
+  const dateNow = new Date();
+  const dateOfBirth = new Date(1992, 11, 24);
+  const diff = new Date(dateNow - dateOfBirth);
+  const year = (diff.getUTCFullYear() - 1970);
   const getSocialLinkItem = (href, title, notWorkinbg) => (
     <li className={'links__item'}>
       <ToggleableLink
@@ -27,7 +31,7 @@ export const AboutMe = ({ disabled }) => {
         Евгений
       </h3>
       <p className={'info__tile'}>
-        Фронтенд-разработчик, 29 лет
+        Фронтенд-разработчик, {year} лет
       </p>
       <p className={'info__text'}>
         Начинающий разработчик из Москвы.
