@@ -25,6 +25,7 @@ import { Shading } from '../Shading';
 import { InfoPopup } from '../InfoPopup';
 import { ProtectedRoute } from '../ProtectedRoute';
 import { formatMovieData } from '../../utils';
+import { USER_CHANGED } from '../../utils/constants/messages';
 
 const App = () => {
   const [isShaded, setIsShaded] = useState(false);
@@ -38,6 +39,7 @@ const App = () => {
   const [elementsDisabled, setElementsDisabled] = useState(false);
   const [registerError, setRegisterError] = useState('');
   const [loginError, setLoginError] = useState('');
+  const [tokenChecked, setTokenChecked] = useState(false);
 
   const history = useHistory();
 
@@ -51,8 +53,6 @@ const App = () => {
     Promise.all([mainApi.getUserInfo(), mainApi.getSavedMovies()])
       .then(([userData, moviesData]) => {
         setCurrentUser(userData);
-        setLoggedIn(true);
-        history.push('/movies');
         setSavedMovies(moviesData);
       })
       .catch(openPopup);
@@ -61,13 +61,15 @@ const App = () => {
   const checkToken = () => {
     mainApi.checkToken()
       .then(() => {
+        setLoggedIn(true);
         getInitialData();
       })
       .catch((err) => {
         if (err.message !== 'no token') {
           openPopup(err);
         }
-      });
+      })
+      .finally(() => setTokenChecked(true));
   };
 
   const removeToken = () => {
@@ -119,7 +121,10 @@ const App = () => {
   const handleChangeUser = (e, user) => {
     e.preventDefault();
     mainApi.setUserInfo(user.name, user.email)
-      .then(setCurrentUser)
+      .then((userData) => {
+        setCurrentUser(userData);
+        openPopup(USER_CHANGED);
+      })
       .catch(openPopup);
   };
 
@@ -153,6 +158,7 @@ const App = () => {
     mainApi.authorize({ email, password })
       .then((data) => {
         saveToken(data.token);
+        setLoggedIn(true);
         getInitialData();
       })
       .catch((err) => setLoginError(err.message));
@@ -215,7 +221,7 @@ const App = () => {
           navigationOpened={navigationOpened || false}
           navButtonClick={navigationOpened ? closeNavigation : openNavigation}
           disabled={elementsDisabled}/>
-        <Switch>
+        {tokenChecked && <Switch>
           <Route
             exact
             path={'/'}>
@@ -250,6 +256,7 @@ const App = () => {
             exact
             path={'/signin'}>
               <Login
+                isLoggedIn={loggedIn}
                 authError={loginError}
                 disabled={elementsDisabled}
                 handleLogin={handleLogin} />
@@ -258,6 +265,7 @@ const App = () => {
             exact
             path={'/signup'}>
               <Register
+                isLoggedIn={loggedIn}
                 authError={registerError}
                 disabled={elementsDisabled}
                 handleRegister={handleRegister} />
@@ -270,7 +278,7 @@ const App = () => {
           <Route>
             <Redirect to={'/404'}/>
           </Route>
-        </Switch>
+        </Switch>}
         <Footer disabled={elementsDisabled} />
     </div>
     </CurrentUserContext.Provider>

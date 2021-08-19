@@ -11,6 +11,7 @@ export const SavedMovies = (props) => {
   const { savedMovies, handleCardClick, disabled } = props;
   const [filtededMovies, setFilteredMovies] = useState(savedMovies || []);
   const [lastSearchString, setLastSearchString] = useState('');
+  const [isFirstRender, setIsFirstRender] = useState(true);
   const handleSearch = (e, searchData) => {
     setFilteredMovies([]);
     e.preventDefault();
@@ -36,10 +37,15 @@ export const SavedMovies = (props) => {
   };
 
   useEffect(() => {
-    const newFilteredMovies = filtededMovies
-      .filter((currentItem) => savedMovies
-        .findIndex((everyItem) => currentItem._id === everyItem._id) !== -1);
-    setFilteredMovies(newFilteredMovies);
+    if (isFirstRender && savedMovies.length > 0) {
+      setFilteredMovies(savedMovies);
+      setIsFirstRender(false);
+    } else {
+      const newFilteredMovies = filtededMovies
+        .filter((currentItem) => savedMovies
+          .findIndex((everyItem) => currentItem._id === everyItem._id) !== -1);
+      setFilteredMovies(newFilteredMovies);
+    }
   }, [savedMovies]);
 
   return (

@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import {
+  React, useEffect, useState, useCallback,
+} from 'react';
 
 import { Preloader } from './Preloader';
 
@@ -9,6 +11,9 @@ import { getBeatMovies, searchStringFiltration } from '../../utils';
 
 import './Movies.css';
 import { MOVIES_API_ERROR, NOTHING_FOUND } from '../../utils/constants/messages';
+import {
+  SCREEN_L, SCREEN_M, SCREEN_S, SCREEN_XL,
+} from '../../utils/constants/visibleElementsData';
 
 export const Movies = (props) => {
   const {
@@ -16,30 +21,46 @@ export const Movies = (props) => {
   } = props;
   const [isLoading, setIsLoading] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.screen.width);
+  const [loadedMovies, setLoadedMovies] = useState([]);
+  const [filtededMovies, setFilteredMovies] = useState([]);
   const [currentMovies, setCurrentMovies] = useState([]);
   const [shownMoviesCount, setShownMoviesCount] = useState(0);
-  const [filtededMovies, setFilteredMovies] = useState([]);
   const [moreButtonVisible, setMoreButtonVisible] = useState(false);
   const [errorMes, setErrorMes] = useState('');
   const [lastSearchString, setLastSearchString] = useState('');
+
+  const setWidth = useCallback(() => {
+    setScreenWidth(window.innerWidth);
+  }, []);
+
   useEffect(() => {
-    window.addEventListener('resize', () => { setScreenWidth(window.screen.width); });
+    window.addEventListener('resize', setWidth);
     const filteredString = localStorage.getItem('lastSearchedMovies');
     if (filteredString) {
       setFilteredMovies(JSON.parse(filteredString));
     }
+    return () => {
+      window.removeEventListener('resize', setWidth);
+    };
   }, []);
 
   const handleSearch = (e, searchData) => {
     setFilteredMovies([]);
     setMoreButtonVisible(false);
     e.preventDefault();
-    setIsLoading(true);
     setShownMoviesCount(0);
-    getBeatMovies()
-      .then((movies) => filterMovies(movies, searchData))
-      .catch(() => setErrorMes(MOVIES_API_ERROR))
-      .finally(() => setIsLoading(false));
+    if (loadedMovies.length) {
+      filterMovies(loadedMovies, searchData);
+    } else {
+      setIsLoading(true);
+      getBeatMovies()
+        .then((movies) => {
+          setLoadedMovies(movies);
+          filterMovies(movies, searchData);
+        })
+        .catch(() => setErrorMes(MOVIES_API_ERROR))
+        .finally(() => setIsLoading(false));
+    }
   };
 
   const filterMovies = (movies, searchData) => {
@@ -55,32 +76,37 @@ export const Movies = (props) => {
 
   const handleCheckbox = (short) => {
     if (filtededMovies.length && lastSearchString.length) {
-      getBeatMovies()
-        .then((movies) => filterMovies(movies, { searchString: lastSearchString, short }));
+      filterMovies(loadedMovies, { searchString: lastSearchString, short });
     }
   };
 
   useEffect(() => {
-    if (screenWidth > 1080) {
-      if (shownMoviesCount % 4) {
-        setShownMoviesCount(shownMoviesCount + (4 - (shownMoviesCount % 4)));
+    if (screenWidth > SCREEN_XL.width) {
+      if (shownMoviesCount % SCREEN_XL.elInRow) {
+        setShownMoviesCount(
+          shownMoviesCount + (SCREEN_XL.elInRow - (shownMoviesCount % SCREEN_XL.elInRow)),
+        );
       } else if (!shownMoviesCount) {
-        setShownMoviesCount(16);
+        setShownMoviesCount(SCREEN_XL.initEl);
       }
-    } else if (screenWidth > 850) {
-      if (shownMoviesCount % 3) {
-        setShownMoviesCount(shownMoviesCount + (3 - (shownMoviesCount % 3)));
+    } else if (screenWidth > SCREEN_L.width) {
+      if (shownMoviesCount % SCREEN_L.elInRow) {
+        setShownMoviesCount(
+          shownMoviesCount + (SCREEN_L.elInRow - (shownMoviesCount % SCREEN_L.elInRow)),
+        );
       } else if (!shownMoviesCount) {
-        setShownMoviesCount(12);
+        setShownMoviesCount(SCREEN_L.initEl);
       }
-    } else if (screenWidth > 520) {
-      if (shownMoviesCount % 2) {
-        setShownMoviesCount(shownMoviesCount + (2 - (shownMoviesCount % 2)));
+    } else if (screenWidth > SCREEN_M.width) {
+      if (shownMoviesCount % SCREEN_M.elInRow) {
+        setShownMoviesCount(
+          shownMoviesCount + (SCREEN_M.elInRow - (shownMoviesCount % SCREEN_M.elInRow)),
+        );
       } else if (!shownMoviesCount) {
-        setShownMoviesCount(8);
+        setShownMoviesCount(SCREEN_M.initEl);
       }
     } else if (!shownMoviesCount) {
-      setShownMoviesCount(5);
+      setShownMoviesCount(SCREEN_S.initEl);
     }
   }, [filtededMovies, screenWidth]);
 
@@ -91,12 +117,12 @@ export const Movies = (props) => {
   }, [shownMoviesCount, filtededMovies]);
 
   const handleMoreClick = () => {
-    if (screenWidth > 1080) {
-      setShownMoviesCount(shownMoviesCount + 4);
-    } else if (screenWidth > 850) {
-      setShownMoviesCount(shownMoviesCount + 3);
+    if (screenWidth > SCREEN_XL.width) {
+      setShownMoviesCount(shownMoviesCount + SCREEN_XL.elInRow);
+    } else if (screenWidth > SCREEN_L.width) {
+      setShownMoviesCount(shownMoviesCount + SCREEN_L.elInRow);
     } else {
-      setShownMoviesCount(shownMoviesCount + 2);
+      setShownMoviesCount(shownMoviesCount + SCREEN_M.elInRow);
     }
   };
 
@@ -104,7 +130,7 @@ export const Movies = (props) => {
     <main className={'movies'}>
         <SearchForm
           handleSearch={handleSearch}
-          disabled={disabled}
+          disabled={disabled || isLoading}
           handleCheckbox={handleCheckbox} />
         {isLoading
           ? <Preloader />
