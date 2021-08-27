@@ -4,6 +4,7 @@ import {
 import './Profile.css';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 import { InputElement } from '../InputElement';
+import { namePattern } from '../../utils/constants/regExp';
 
 export const Profile = ({ handleChangeUser, handleLogout, disabled }) => {
   const user = useContext(CurrentUserContext);
@@ -56,6 +57,7 @@ export const Profile = ({ handleChangeUser, handleLogout, disabled }) => {
           validity={inputsValidity.name}
           placeholder={''}
           errorText={errorMsgs.name}
+          pattern={namePattern}
         />
         <InputElement
           disabled={disabled}

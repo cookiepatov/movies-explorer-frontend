@@ -1,16 +1,21 @@
 import { React, useState, useEffect } from 'react';
-
+import {
+  useHistory,
+} from 'react-router-dom';
 import { AuthForm } from '../AuthForm';
 import { LogoBtn } from '../LogoBtn/LogoBtn';
 
 import './Login.css';
 
 export const Login = (props) => {
-  const { handleLogin, disabled } = props;
+  const {
+    handleLogin, disabled, authError, isLoggedIn,
+  } = props;
   const [inputsValidity, setValidity] = useState({ email: true, password: true });
   const [formValiduty, setFormValidity] = useState(false);
   const [inputValues, setInputValues] = useState({ password: '', email: '' });
   const [errorMsgs, setErrorMsgs] = useState({ password: '', email: '' });
+  const history = useHistory();
   const handleChange = (e) => {
     const {
       name, validity, validationMessage, value,
@@ -26,11 +31,18 @@ export const Login = (props) => {
     setFormValidity(valid && inputs.every((field) => inputValues[field] !== ''));
   }, [inputValues]);
 
+  useEffect(() => {
+    if (isLoggedIn) {
+      history.push('/movies');
+    }
+  }, [isLoggedIn]);
+
   return (
     <main className={'login'}>
       <LogoBtn disabled={disabled} />
       <h2 className={'login__message'}>Рады видеть!</h2>
       <AuthForm
+        authError={authError}
         disabled={disabled}
         isRegister={false}
         formValidity={formValiduty}

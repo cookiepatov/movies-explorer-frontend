@@ -1,12 +1,15 @@
 import React from 'react';
 
+import ToggleableLink from '../../TogleableLink/TogglableLink';
+
 import { classNames } from '../../../utils';
+
+import { beatsApiData } from '../../../utils/constants/apiData';
 
 import heart from '../../../images/heart.svg';
 import cross from '../../../images/cross.svg';
 
 import './MoviesCard.css';
-import ToggleableLink from '../../TogleableLink/TogglableLink';
 
 const getTime = (duration) => {
   const minutes = duration % 60;
@@ -21,23 +24,25 @@ export const MoviesCard = (props) => {
     movieData, isFromSaved, isLiked, onButtonClick, disabled,
   } = props;
   const {
-    trailer, image, nameRU, duration,
+    trailer, trailerLink, image, nameRU, duration,
   } = movieData;
+  const imageURL = image.url ? beatsApiData.baseUrl + image.url : image;
   return (
     <li className={'card'}>
       <ToggleableLink
         disabled={disabled}
         external={true}
         className={'card__link'}
-        to={trailer}>
-          <img className={'card__image'} src={image} alt={nameRU} />
+        to={trailer || trailerLink}>
+          <img className={'card__image'} src={imageURL} alt={nameRU} />
       </ToggleableLink>
 
       <div className={'card__middleRow'}>
         <h3 className={'card__title'}>
           {nameRU}
         </h3>
-        <button
+        <div>
+          <button
           disabled={disabled}
           className={classNames('card__button', isFromSaved && 'card__button_invisible')}
           onClick={() => onButtonClick(isLiked, movieData)}>
@@ -49,6 +54,7 @@ export const MoviesCard = (props) => {
             )}
             src={isFromSaved ? cross : heart} />
         </button>
+        </div>
       </div>
       <p className={'card__duration'}>
         {getTime(duration)}
